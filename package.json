@@ -1,0 +1,36 @@
+{
+  "name": "cordova-plugin-passbook",
+  "version": "0.2.1",
+  "description": "This plugin allows you to add passes to Passbook",
+  "cordova": {
+    "id": "com.passslot.cordova.plugin.passbook",
+    "platforms": [
+      "ios" 
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhmadNsour/cordova-plugin-passbook.git"
+  },
+  "author": "Ahmad Nsour",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AhmadNsour/cordova-plugin-passbook/issues"
+  },
+  "homepage": "https://github.com/AhmadNsour/cordova-plugin-passbook#readme",
+  "funding": "https://github.com/AhmadNsour/cordova-plugin-passbook?sponsor=1",
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios" 
+  ],
+  "scripts": {
+    "preversion": "npm run docs && rm -rf docs",
+    "version": "perl -i -pe 's/(version=)\"\\d+\\.\\d+\\.\\d+\"/$1\"'$npm_package_version'\"$2/' plugin.xml && git add .",
+    "postversion": "git push && git push --tags",
+    "predocs": "tsc www/* --declaration --allowJs --checkJs --lib es2015,dom --emitDeclarationOnly --outDir types",
+    "docs": "typedoc && perl -i -pe 's/README.md#/#/g' ./docs/README.md",
+    "postdocs": "perl -i -0pe 's/(<!-- TypedocGenerated -->).*/$1\n\n/gms' README.md && cat ./docs/README.md >> README.md"
+  }
+}
